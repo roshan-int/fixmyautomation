@@ -3,10 +3,927 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FixMyAutomation - UiPath Automation Repair</title>
+
+    <title>FixMyAutomation | UiPath Automation Repair</title>
+
+    <meta name="description"
+          content="Have a broken UiPath automation? We diagnose and repair existing UiPath workflows, selectors, Excel automation, browser automation and Orchestrator issues.">
+
+    <meta name="robots" content="index, follow">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            color: #172033;
+            background: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Header */
+
+        header {
+            border-bottom: 1px solid #e8ebf0;
+            background: rgba(255,255,255,0.96);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 14px;
+            color: #536075;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-button {
+            background: #2563eb;
+            color: white !important;
+            padding: 10px 17px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 92px 0 80px;
+            background:
+                radial-gradient(circle at 80% 20%, #eef5ff 0, transparent 34%),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #2563eb;
+        }
+
+        h1 {
+            font-size: clamp(42px, 5vw, 64px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        h1 span {
+            color: #2563eb;
+        }
+
+        .hero-text {
+            font-size: 19px;
+            color: #596579;
+            max-width: 640px;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 9px;
+            background: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .primary-button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 9px;
+            border: 1px solid #d7dce5;
+            background: #ffffff;
+            color: #263247;
+            font-weight: 600;
+        }
+
+        .trust-line {
+            margin-top: 26px;
+            font-size: 13px;
+            color: #6b7587;
+        }
+
+        /* Hero visual */
+
+        .status-card {
+            background: white;
+            border: 1px solid #e1e6ee;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(23, 32, 51, 0.09);
+            overflow: hidden;
+        }
+
+        .status-header {
+            padding: 17px 20px;
+            border-bottom: 1px solid #edf0f4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-title {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .status-live {
+            font-size: 11px;
+            font-weight: 700;
+            color: #15803d;
+            background: #f0fdf4;
+            padding: 5px 9px;
+            border-radius: 999px;
+        }
+
+        .automation {
+            padding: 19px 20px;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .automation:last-child {
+            border-bottom: none;
+        }
+
+        .automation-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .automation-name {
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .automation-status {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .failed {
+            color: #dc2626;
+        }
+
+        .investigating {
+            color: #d97706;
+        }
+
+        .progress {
+            height: 6px;
+            background: #edf0f4;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+        }
+
+        .error-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 7px;
+            background: #fff7f7;
+            border: 1px solid #fee2e2;
+            font-size: 11px;
+            color: #991b1b;
+            font-family: Consolas, monospace;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 82px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        .section-heading h2 {
+            font-size: 36px;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .section-heading p {
+            color: #657083;
+            font-size: 17px;
+        }
+
+        /* Problems */
+
+        .problems {
+            background: #ffffff;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .problem-card {
+            padding: 25px;
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+            background: #ffffff;
+            transition: 0.2s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(23,32,51,0.07);
+            border-color: #cbd5e1;
+        }
+
+        .problem-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .problem-card h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .problem-card p {
+            font-size: 14px;
+            color: #687386;
+        }
+
+        /* How it works */
+
+        .how {
+            background: #f8fafc;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #172033;
+            color: white;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #687386;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: #172033;
+            color: white;
+        }
+
+        .cta-box {
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .cta p {
+            color: #b7c0cf;
+            font-size: 17px;
+            max-width: 580px;
+        }
+
+        .cta-points {
+            margin-top: 25px;
+            display: grid;
+            gap: 11px;
+            color: #e3e8ef;
+            font-size: 14px;
+        }
+
+        .cta-points div::before {
+            content: "✓";
+            color: #60a5fa;
+            font-weight: 800;
+            margin-right: 9px;
+        }
+
+        .form-card {
+            background: white;
+            color: #172033;
+            border-radius: 15px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+        }
+
+        .form-card h3 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .form-card > p {
+            color: #6b7587;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid #d9dee7;
+            border-radius: 7px;
+            padding: 10px 11px;
+            font: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #dbeafe;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .form-note {
+            font-size: 11px;
+            color: #7a8494;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 30px 0;
+            background: #101827;
+            color: #8e99aa;
+            font-size: 12px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 850px) {
+            .hero-grid,
+            .cta-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 65px;
+            }
+
+            .problem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links a:not(.nav-button) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                width: min(100% - 28px, 1120px);
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .problem-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Broken UiPath Automation?</h1>
-    <p>We fix broken UiPath automations.</p>
+
+<header>
+    <div class="container nav">
+        <a href="#" class="logo">FixMy<span>Automation</span></a>
+
+        <nav class="nav-links">
+            <a href="#problems">Problems We Fix</a>
+            <a href="#how">How It Works</a>
+            <a href="#request" class="nav-button">Get Help</a>
+        </nav>
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="container hero-grid">
+
+            <div>
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    UiPath Automation Repair
+                </div>
+
+                <h1>
+                    Your UiPath Automation Broke.
+                    <span>We'll Help Fix It.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Don't rebuild a workflow that was already working.
+                    Tell us what went wrong and our UiPath specialists
+                    will investigate the problem and provide a repair quote.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#request" class="primary-button">
+                        Get a Free Initial Assessment
+                    </a>
+
+                    <a href="#how" class="secondary-button">
+                        How It Works
+                    </a>
+                </div>
+
+                <div class="trust-line">
+                    Existing automations • Troubleshooting • Repair • Testing
+                </div>
+            </div>
+
+
+            <div class="status-card">
+
+                <div class="status-header">
+                    <div class="status-title">Automation Repair Request</div>
+                    <div class="status-live">ACTIVE</div>
+                </div>
+
+                <div class="automation">
+                    <div class="automation-top">
+                        <span class="automation-name">Invoice Processing</span>
+                        <span class="automation-status failed">FAILED</span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 42%;"></div>
+                    </div>
+
+                    <div class="error-box">
+                        Element not found: Submit button
+                    </div>
+                </div>
+
+                <div class="automation">
+                    <div class="automation-top">
+                        <span class="automation-name">Excel Reporting</span>
+                        <span class="automation-status investigating">INVESTIGATING</span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 68%;"></div>
+                    </div>
+                </div>
+
+                <div class="automation">
+                    <div class="automation-top">
+                        <span class="automation-name">Customer Update</span>
+                        <span class="automation-status failed">FAILED</span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 28%;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PROBLEMS -->
+
+    <section class="problems" id="problems">
+
+        <div class="container">
+
+            <div class="section-heading">
+                <h2>What happened to your automation?</h2>
+                <p>
+                    Existing UiPath automations can fail for many reasons.
+                    We investigate the actual problem instead of asking you
+                    to start from scratch.
+                </p>
+            </div>
+
+            <div class="problem-grid">
+
+                <div class="problem-card">
+                    <div class="problem-icon">01</div>
+                    <h3>Element Not Found</h3>
+                    <p>
+                        UI elements or selectors no longer match the application.
+                    </p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">02</div>
+                    <h3>Selector Problems</h3>
+                    <p>
+                        Selectors have become unreliable after application changes.
+                    </p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">03</div>
+                    <h3>Excel Automation</h3>
+                    <p>
+                        Excel activities, files, formulas or application interactions fail.
+                    </p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">04</div>
+                    <h3>Browser Automation</h3>
+                    <p>
+                        Existing browser workflows stop working after changes or updates.
+                    </p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">05</div>
+                    <h3>Workflow Errors</h3>
+                    <p>
+                        Variables, arguments, exceptions or workflow logic cause failures.
+                    </p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">06</div>
+                    <h3>Orchestrator & Dependencies</h3>
+                    <p>
+                        Jobs, packages, dependencies or execution environments cause problems.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how" id="how">
+
+        <div class="container">
+
+            <div class="section-heading">
+                <h2>Simple. No long consulting process.</h2>
+                <p>
+                    We focus on getting your existing automation working again.
+                </p>
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Tell us what's broken</h3>
+                    <p>
+                        Describe the error and what changed.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We investigate</h3>
+                    <p>
+                        We review the problem and determine the likely cause.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get a repair quote</h3>
+                    <p>
+                        You know the cost before we start the repair.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>We repair & test</h3>
+                    <p>
+                        We fix the automation and test the repaired workflow.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REQUEST -->
+
+    <section class="cta" id="request">
+
+        <div class="container cta-box">
+
+            <div>
+
+                <h2>
+                    Have a UiPath automation that isn't working?
+                </h2>
+
+                <p>
+                    Send us a few details about the problem.
+                    We'll review the request and get back to you with
+                    an initial assessment.
+                </p>
+
+                <div class="cta-points">
+                    <div>No obligation to proceed</div>
+                    <div>Initial assessment before repair</div>
+                    <div>Repair quote provided before work starts</div>
+                    <div>Your automation remains yours</div>
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h3>Tell us about the problem</h3>
+
+                <p>
+                    We'll use this information to understand the issue.
+                </p>
+
+                <form id="repairForm">
+
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Your name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="you@company.com"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue">What is wrong? *</label>
+
+                        <select id="issue" name="issue" required>
+                            <option value="">Select an issue</option>
+                            <option>Element / Selector problem</option>
+                            <option>Excel automation</option>
+                            <option>Browser automation</option>
+                            <option>Workflow error</option>
+                            <option>Orchestrator / Package issue</option>
+                            <option>Other UiPath problem</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Describe the problem *</label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="What was working before, and what happens now?"
+                            required></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="primary-button form-submit">
+                        Submit Repair Request
+                    </button>
+
+                    <div class="form-note">
+                        Please don't include passwords, credentials or secrets.
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-brand">FixMyAutomation</div>
+        <div>UiPath Automation Repair Service</div>
+    </div>
+</footer>
+
+
+<script>
+    /*
+       n8n integration will be added here later.
+
+       For now, prevent the form from submitting to a nonexistent endpoint.
+    */
+
+    document.getElementById("repairForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        alert(
+            "Thank you. Your repair request has been received.\n\n" +
+            "The online submission system is being configured."
+        );
+    });
+</script>
+
 </body>
 </html>
