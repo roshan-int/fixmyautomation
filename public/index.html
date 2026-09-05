@@ -833,8 +833,14 @@
                     We'll use this information to understand the issue.
                 </p>
 
-                <form id="repairForm">
-
+                <form id="repairForm"
+                    action="https://formsubmit.co/botfarm.inc@gmail.com"
+                    method="POST">
+                    
+                    <input type="hidden" name="_subject" value="New UiPath Repair Request">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="form-group">
                         <label for="name">Name *</label>
                         <input
@@ -853,6 +859,17 @@
                             type="email"
                             placeholder="you@company.com"
                             required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">
+                            WhatsApp <span style="font-weight: 400; color: #7a8494;">(optional)</span>
+                        </label>
+                        <input
+                            id="whatsapp"
+                            name="whatsapp"
+                            type="tel"
+                            placeholder="+94 77 123 4567">
                     </div>
 
                     <div class="form-group">
@@ -907,23 +924,6 @@
     </div>
 </footer>
 
-
-<script>
-    /*
-       n8n integration will be added here later.
-
-       For now, prevent the form from submitting to a nonexistent endpoint.
-    */
-
-    document.getElementById("repairForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        alert(
-            "Thank you. Your repair request has been received.\n\n" +
-            "The online submission system is being configured."
-        );
-    });
-</script>
 
 </body>
 </html>
