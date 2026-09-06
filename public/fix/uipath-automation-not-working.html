@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>UiPath Automation Not Working? How to Troubleshoot It | FixMyAutomation</title>
+
+    <meta name="description"
+          content="Is your UiPath automation not working or suddenly failing? Learn how to troubleshoot workflows, selectors, browsers, Excel, packages, Orchestrator and robot environment issues.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical"
+          href="https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-automation-not-working.html">
+
+    <meta property="og:title"
+          content="UiPath Automation Not Working? How to Troubleshoot It">
+
+    <meta property="og:description"
+          content="Practical troubleshooting for UiPath automations that suddenly stop working or fail at runtime.">
+
+    <meta property="og:type"
+          content="article">
+
+    <meta property="og:url"
+          content="https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-automation-not-working.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "UiPath Automation Not Working? How to Troubleshoot It",
+        "description": "Practical troubleshooting for UiPath automations that suddenly stop working or fail at runtime.",
+        "url": "https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-automation-not-working.html",
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "UiPath"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "FixMyAutomation",
+            "url": "https://fixmyautomation.roshan-onsurf.workers.dev/"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202124;
+            background: #ffffff;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 22px 20px;
+        }
+
+        header .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 55px 20px 80px;
+        }
+
+        .eyebrow {
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        h1 {
+            font-size: 44px;
+            line-height: 1.15;
+            margin: 12px 0 20px;
+            color: #111827;
+        }
+
+        h2 {
+            margin-top: 45px;
+            font-size: 28px;
+            line-height: 1.25;
+            color: #111827;
+        }
+
+        h3 {
+            margin-top: 30px;
+            font-size: 21px;
+            color: #111827;
+        }
+
+        p {
+            margin: 16px 0;
+        }
+
+        ul,
+        ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 9px 0;
+        }
+
+        .intro {
+            font-size: 20px;
+            color: #4b5563;
+        }
+
+        .note {
+            margin: 30px 0;
+            padding: 20px 22px;
+            background: #f3f4f6;
+            border-left: 4px solid #111827;
+            border-radius: 6px;
+        }
+
+        .checklist {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .cta {
+            margin-top: 55px;
+            padding: 35px;
+            border-radius: 12px;
+            background: #111827;
+            color: white;
+        }
+
+        .cta h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 13px 20px;
+            border-radius: 7px;
+            background: white;
+            color: #111827;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .related {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .related a {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        code {
+            background: #f3f4f6;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 34px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+
+            main {
+                padding-top: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <a href="/">FixMyAutomation</a>
+    </div>
+</header>
+
+<main>
+
+    <div class="eyebrow">UiPath troubleshooting</div>
+
+    <h1>UiPath Automation Not Working? Start Here Before You Rebuild It</h1>
+
+    <p class="intro">
+        Your UiPath automation used to work. Now it fails, stops halfway through,
+        cannot find something, or behaves differently when someone else runs it.
+    </p>
+
+    <p>
+        When an automation suddenly stops working, it is tempting to start
+        changing activities until the error disappears.
+    </p>
+
+    <p>
+        That's usually not the best way to repair it.
+    </p>
+
+    <p>
+        First find out what changed, where the failure starts, and whether the
+        problem is actually inside the workflow.
+    </p>
+
+    <div class="note">
+        <strong>A previously working automation is valuable evidence.</strong>
+        If you can identify the last successful run and what changed afterward,
+        you can often narrow down the problem much faster.
+    </div>
+
+    <h2>1. Find the first point where the automation fails</h2>
+
+    <p>
+        Don't start by reviewing the entire workflow.
+    </p>
+
+    <p>
+        Run it and identify the first activity that behaves differently from
+        the successful run.
+    </p>
+
+    <p>For example:</p>
+
+    <ul>
+        <li>The browser does not open.</li>
+        <li>A button cannot be found.</li>
+        <li>An Excel file cannot be opened.</li>
+        <li>A workflow throws an exception.</li>
+        <li>The process stops after a particular transaction.</li>
+        <li>The robot never starts the process.</li>
+    </ul>
+
+    <p>
+        Once you know where the failure begins, the problem becomes much
+        smaller.
+    </p>
+
+    <h2>2. Ask what changed</h2>
+
+    <p>
+        This is probably the most useful question when an existing UiPath
+        automation suddenly stops working.
+    </p>
+
+    <p>
+        Think about changes made shortly before the first failure:
+    </p>
+
+    <ul>
+        <li>Was the website updated?</li>
+        <li>Was Chrome or Edge updated?</li>
+        <li>Was Microsoft Excel or Office updated?</li>
+        <li>Was UiPath Studio upgraded?</li>
+        <li>Were activity packages changed?</li>
+        <li>Was the workflow published again?</li>
+        <li>Was the robot machine changed?</li>
+        <li>Did the Windows account change?</li>
+        <li>Did permissions or network access change?</li>
+        <li>Did the source application change?</li>
+    </ul>
+
+    <p>
+        The timing of the failure can be more useful than the error message
+        by itself.
+    </p>
+
+    <h2>3. Does it fail in Studio or only on the robot?</h2>
+
+    <p>
+        Try to determine whether the problem happens when running the workflow
+        manually in UiPath Studio or only when it is executed through
+        Orchestrator.
+    </p>
+
+    <p>
+        If it works in Studio but fails on the robot, don't immediately rewrite
+        the workflow.
+    </p>
+
+    <p>
+        Compare the environments first.
+    </p>
+
+    <ul>
+        <li>Windows account</li>
+        <li>Robot configuration</li>
+        <li>Application availability</li>
+        <li>File and folder permissions</li>
+        <li>Network access</li>
+        <li>Mapped drives</li>
+        <li>Installed applications</li>
+        <li>UiPath and activity package versions</li>
+    </ul>
+
+    <h2>4. Check whether the application changed</h2>
+
+    <p>
+        Many UiPath automations depend on another application behaving in a
+        particular way.
+    </p>
+
+    <p>
+        If the target application changed, the UiPath workflow may still be
+        logically correct while its interaction with that application is no
+        longer valid.
+    </p>
+
+    <p>
+        Common examples include:
+    </p>
+
+    <ul>
+        <li>Web page redesign</li>
+        <li>Changed button or field structure</li>
+        <li>New login page</li>
+        <li>Changed desktop application controls</li>
+        <li>Renamed Excel worksheets</li>
+        <li>Changed file locations</li>
+        <li>New application security restrictions</li>
+    </ul>
+
+    <p>
+        In these cases, the repair may be small even though the error looks
+        serious.
+    </p>
+
+    <h2>5. If the error says "Element Not Found"</h2>
+
+    <p>
+        This usually points toward the UI interaction layer.
+    </p>
+
+    <p>
+        Check the selector, target application, window or browser tab, timing,
+        and whether the expected element actually exists.
+    </p>
+
+    <p>
+        Don't automatically replace every selector.
+    </p>
+
+    <p>
+        If only one element changed, repairing that interaction may be enough.
+    </p>
+
+    <p>
+        See our more detailed guide:
+        <a href="/fix/uipath-element-not-found.html">
+            UiPath Element Not Found
+        </a>.
+    </p>
+
+    <h2>6. If selectors suddenly stopped working</h2>
+
+    <p>
+        A selector can work for months and then fail after the application
+        changes its UI.
+    </p>
+
+    <p>
+        Look for attributes that are no longer stable and compare the current
+        UI with the one the automation was originally built against.
+    </p>
+
+    <p>
+        Also consider whether the automation behaves differently when running
+        unattended.
+    </p>
+
+    <p>
+        For a deeper investigation, see:
+        <a href="/fix/uipath-selector-not-working.html">
+            UiPath Selector Not Working
+        </a>.
+    </p>
+
+    <h2>7. If browser automation stopped working</h2>
+
+    <p>
+        Browser automation deserves its own investigation because browser
+        updates, extensions, application changes and automation technology can
+        all affect an existing workflow.
+    </p>
+
+    <p>
+        Check whether:
+    </p>
+
+    <ul>
+        <li>The browser version changed.</li>
+        <li>The UiPath browser extension is available.</li>
+        <li>The robot can communicate with the browser.</li>
+        <li>The website changed.</li>
+        <li>The page loads differently under the robot account.</li>
+    </ul>
+
+    <p>
+        See:
+        <a href="/fix/uipath-browser-automation-error.html">
+            UiPath Browser Automation Not Working
+        </a>.
+    </p>
+
+    <h2>8. If Excel automation stopped working</h2>
+
+    <p>
+        Check the workbook, file path, permissions, Excel processes, worksheet
+        names, package versions and robot environment.
+    </p>
+
+    <p>
+        An Excel problem is not necessarily caused by the Excel activity
+        itself.
+    </p>
+
+    <p>
+        See:
+        <a href="/fix/uipath-excel-automation-error.html">
+            UiPath Excel Automation Error
+        </a>.
+    </p>
+
+    <h2>9. Check package dependencies</h2>
+
+    <p>
+        If the project was moved to another computer or someone changed the
+        UiPath Studio or activity package versions, dependency problems may
+        prevent the project from working correctly.
+    </p>
+
+    <p>
+        Check the project's dependencies before upgrading packages blindly.
+    </p>
+
+    <p>
+        A production automation should not have every dependency upgraded just
+        because a newer version is available.
+    </p>
+
+    <p>
+        See:
+        <a href="/fix/uipath-package-dependency-error.html">
+            UiPath Package Dependency Error
+        </a>.
+    </p>
+
+    <h2>10. If the job fails in Orchestrator</h2>
+
+    <p>
+        If the workflow works when tested manually but the Orchestrator job
+        fails, investigate the robot environment and the job itself.
+    </p>
+
+    <p>
+        Check whether the job actually started, whether a robot was available,
+        whether the Windows session was established, and what the first real
+        exception says.
+    </p>
+
+    <p>
+        See:
+        <a href="/fix/uipath-orchestrator-job-failed.html">
+            UiPath Orchestrator Job Failed
+        </a>.
+    </p>
+
+    <h2>11. Compare a successful run with a failed run</h2>
+
+    <p>
+        If you have execution logs from a successful run, use them.
+    </p>
+
+    <p>
+        Compare the successful and failed executions around the point where
+        their behavior diverges.
+    </p>
+
+    <p>
+        Useful information includes:
+    </p>
+
+    <ul>
+        <li>Activity names</li>
+        <li>Exception messages</li>
+        <li>Input values</li>
+        <li>File paths</li>
+        <li>Application state</li>
+        <li>Execution time</li>
+        <li>Robot machine</li>
+    </ul>
+
+    <p>
+        This is often much more productive than reading hundreds of workflow
+        activities from beginning to end.
+    </p>
+
+    <h2>12. Don't make several changes at once</h2>
+
+    <p>
+        This is one of the easiest mistakes to make during a repair.
+    </p>
+
+    <p>
+        Suppose the automation fails because a selector changed. If you also
+        upgrade activity packages, change timeout values, replace browser
+        activities and restructure the workflow, you may eventually get a
+        successful run—but you won't know what actually fixed the problem.
+    </p>
+
+    <p>
+        Make one meaningful change at a time whenever possible.
+    </p>
+
+    <h2>13. Check whether the failure is consistent</h2>
+
+    <p>
+        Does the automation fail every time, or only occasionally?
+    </p>
+
+    <p>
+        An intermittent failure often points toward timing, application
+        availability, network conditions, external systems, race conditions,
+        or resource problems rather than a simple broken activity.
+    </p>
+
+    <p>
+        Record when the failure happens and whether the same transaction can
+        succeed on another attempt.
+    </p>
+
+    <h2>Quick UiPath automation troubleshooting checklist</h2>
+
+    <div class="checklist">
+
+        <ul>
+            <li>☐ Identify the first activity that fails.</li>
+            <li>☐ Find the last known successful run.</li>
+            <li>☐ Ask what changed before the failure.</li>
+            <li>☐ Check whether it fails in Studio or only on the robot.</li>
+            <li>☐ Check the target application's current state.</li>
+            <li>☐ Check selectors and UI elements.</li>
+            <li>☐ Check browser or Excel dependencies where relevant.</li>
+            <li>☐ Check UiPath package dependencies.</li>
+            <li>☐ Check Orchestrator and robot status.</li>
+            <li>☐ Compare successful and failed execution logs.</li>
+            <li>☐ Make the smallest safe repair.</li>
+            <li>☐ Test the original scenario again.</li>
+        </ul>
+
+    </div>
+
+    <h2>When you should repair instead of rebuild</h2>
+
+    <p>
+        If an automation has been running successfully for months or years,
+        don't assume that a new failure means the workflow needs to be rebuilt.
+    </p>
+
+    <p>
+        Existing automations often break because something around them changed:
+        a website, browser, Excel file, Windows environment, package dependency,
+        robot configuration or external system.
+    </p>
+
+    <p>
+        The workflow may still contain most of the correct business logic.
+    </p>
+
+    <p>
+        A targeted repair can therefore be faster, cheaper and safer than
+        starting over.
+    </p>
+
+    <div class="cta">
+
+        <h2>Your UiPath automation stopped working?</h2>
+
+        <p>
+            You don't need to figure out the entire problem before contacting us.
+        </p>
+
+        <p>
+            Send us the error message, explain what the automation was supposed
+            to do, and tell us when it last worked.
+        </p>
+
+        <p>
+            We'll help identify whether the problem is a selector, application,
+            Excel, browser, dependency, robot or Orchestrator issue.
+        </p>
+
+        <a href="/#repairForm">Get a Free Initial Assessment</a>
+
+    </div>
+
+    <div class="related">
+
+        <h2>Related UiPath troubleshooting guides</h2>
+
+        <ul>
+
+            <li>
+                <a href="/fix/uipath-selector-not-working.html">
+                    UiPath Selector Not Working
+                </a>
+            </li>
+
+            <li>
+                <a href="/fix/uipath-element-not-found.html">
+                    UiPath Element Not Found
+                </a>
+            </li>
+
+            <li>
+                <a href="/fix/uipath-browser-automation-error.html">
+                    UiPath Browser Automation Not Working
+                </a>
+            </li>
+
+            <li>
+                <a href="/fix/uipath-excel-automation-error.html">
+                    UiPath Excel Automation Error
+                </a>
+            </li>
+
+            <li>
+                <a href="/fix/uipath-package-dependency-error.html">
+                    UiPath Package Dependency Error
+                </a>
+            </li>
+
+            <li>
+                <a href="/fix/uipath-orchestrator-job-failed.html">
+                    UiPath Orchestrator Job Failed
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</main>
+
+</body>
+</html>
