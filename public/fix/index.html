@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>UiPath Troubleshooting & Repair Guides | FixMyAutomation</title>
+
+    <meta name="description"
+          content="Practical UiPath troubleshooting and repair guides for selectors, elements, browsers, Excel, Orchestrator, dependencies and automations that stopped working.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical"
+          href="https://fixmyautomation.roshan-onsurf.workers.dev/fix/">
+
+    <meta property="og:title"
+          content="UiPath Troubleshooting & Repair Guides">
+
+    <meta property="og:description"
+          content="Practical troubleshooting guides for broken UiPath automations.">
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:url"
+          content="https://fixmyautomation.roshan-onsurf.workers.dev/fix/">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "UiPath Troubleshooting & Repair Guides",
+        "description": "Practical UiPath troubleshooting and repair guides.",
+        "url": "https://fixmyautomation.roshan-onsurf.workers.dev/fix/",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "FixMyAutomation",
+            "url": "https://fixmyautomation.roshan-onsurf.workers.dev/"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202124;
+            background: #ffffff;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 22px 20px;
+        }
+
+        header .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 55px 20px 80px;
+        }
+
+        .eyebrow {
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        h1 {
+            font-size: 46px;
+            line-height: 1.15;
+            margin: 12px 0 20px;
+            color: #111827;
+        }
+
+        h2 {
+            margin-top: 50px;
+            font-size: 30px;
+            color: #111827;
+        }
+
+        p {
+            margin: 16px 0;
+        }
+
+        .intro {
+            max-width: 760px;
+            font-size: 20px;
+            color: #4b5563;
+        }
+
+        .guides {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .guide {
+            display: block;
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #202124;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .guide:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .guide-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .guide h3 {
+            margin: 8px 0 10px;
+            font-size: 21px;
+            color: #111827;
+        }
+
+        .guide p {
+            margin: 0;
+            color: #4b5563;
+            font-size: 15px;
+        }
+
+        .note {
+            margin-top: 40px;
+            padding: 22px;
+            background: #f3f4f6;
+            border-left: 4px solid #111827;
+            border-radius: 6px;
+        }
+
+        .steps {
+            max-width: 760px;
+        }
+
+        .steps li {
+            margin: 12px 0;
+        }
+
+        .cta {
+            margin-top: 60px;
+            padding: 40px;
+            border-radius: 12px;
+            background: #111827;
+            color: white;
+        }
+
+        .cta h2 {
+            margin-top: 0;
+            color: white;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 13px 20px;
+            border-radius: 7px;
+            background: white;
+            color: #111827;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 700px) {
+
+            h1 {
+                font-size: 35px;
+            }
+
+            .guides {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding-top: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <a href="/">FixMyAutomation</a>
+    </div>
+</header>
+
+<main>
+
+    <div class="eyebrow">UiPath repair & troubleshooting</div>
+
+    <h1>UiPath Troubleshooting Guides</h1>
+
+    <p class="intro">
+        Your UiPath automation doesn't always need to be rebuilt when something
+        breaks. These guides cover the problems we see most often when an
+        existing automation suddenly stops working.
+    </p>
+
+    <p class="intro">
+        Start with the guide that best matches your error. If you're not sure
+        what is causing the problem, start with
+        <a href="/fix/uipath-automation-not-working.html">
+            UiPath Automation Not Working
+        </a>.
+    </p>
+
+    <h2>Find the problem</h2>
+
+    <div class="guides">
+
+        <a class="guide"
+           href="/fix/uipath-automation-not-working.html">
+
+            <div class="guide-number">Start here</div>
+
+            <h3>UiPath Automation Not Working</h3>
+
+            <p>
+                The automation used to work but now fails, stops halfway,
+                or behaves differently. Start here if you don't know the
+                exact cause yet.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-selector-not-working.html">
+
+            <div class="guide-number">UI automation</div>
+
+            <h3>UiPath Selector Not Working</h3>
+
+            <p>
+                Troubleshoot selectors that worked previously but now fail
+                because of changing attributes, application updates,
+                timing or runtime differences.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-element-not-found.html">
+
+            <div class="guide-number">UI automation</div>
+
+            <h3>UiPath Element Not Found</h3>
+
+            <p>
+                Find out why UiPath cannot locate an element and whether
+                the issue is the selector, application state, timing,
+                window or robot environment.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-browser-automation-error.html">
+
+            <div class="guide-number">Browser automation</div>
+
+            <h3>UiPath Browser Automation Not Working</h3>
+
+            <p>
+                Troubleshoot Chrome and Edge automation problems,
+                browser communication, extensions, website changes
+                and runtime differences.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-excel-automation-error.html">
+
+            <div class="guide-number">Excel automation</div>
+
+            <h3>UiPath Excel Automation Error</h3>
+
+            <p>
+                Troubleshoot workbook errors, file access, locked files,
+                worksheet changes, Excel processes and robot environment
+                problems.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-package-dependency-error.html">
+
+            <div class="guide-number">Project dependencies</div>
+
+            <h3>UiPath Package Dependency Error</h3>
+
+            <p>
+                Diagnose missing packages, version conflicts, unavailable
+                package sources and projects that stopped opening or running
+                after an environment change.
+            </p>
+
+        </a>
+
+        <a class="guide"
+           href="/fix/uipath-orchestrator-job-failed.html">
+
+            <div class="guide-number">Orchestrator</div>
+
+            <h3>UiPath Orchestrator Job Failed</h3>
+
+            <p>
+                Troubleshoot failed, pending or non-starting jobs by checking
+                robots, permissions, Windows sessions, environments and
+                execution logs.
+            </p>
+
+        </a>
+
+    </div>
+
+    <h2>How to troubleshoot an existing automation</h2>
+
+    <div class="steps">
+
+        <ol>
+            <li>
+                <strong>Find the first failure.</strong>
+                Don't start by reviewing the entire workflow. Identify
+                the first activity that behaves differently.
+            </li>
+
+            <li>
+                <strong>Find the last successful run.</strong>
+                A previous successful execution gives you something
+                concrete to compare against.
+            </li>
+
+            <li>
+                <strong>Ask what changed.</strong>
+                Look at the application, browser, Excel, packages,
+                Windows environment, robot and deployment.
+            </li>
+
+            <li>
+                <strong>Make the smallest safe change.</strong>
+                Avoid changing multiple unrelated parts of a production
+                workflow at the same time.
+            </li>
+
+            <li>
+                <strong>Test the original scenario.</strong>
+                A workflow opening successfully is not enough. Test the
+                operation that originally failed.
+            </li>
+        </ol>
+
+    </div>
+
+    <div class="note">
+        <strong>Why we focus on repair:</strong>
+        An automation that has been running successfully for months or years
+        usually contains valuable business logic that doesn't need to be
+        thrown away because one part stopped working.
+    </div>
+
+    <h2>Can't identify the problem?</h2>
+
+    <p>
+        That's okay. You don't need to know whether the problem is a selector,
+        dependency, browser, Excel, Orchestrator or robot issue before asking
+        for help.
+    </p>
+
+    <p>
+        Give us the error message and explain what the automation was supposed
+        to do. We'll start by identifying where the failure is occurring.
+    </p>
+
+    <div class="cta">
+
+        <h2>UiPath automation broken?</h2>
+
+        <p>
+            Tell us what happened. We'll investigate first and quote the repair
+            before any paid work begins.
+        </p>
+
+        <a href="/#repairForm">
+            Get a Free Initial Assessment
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>
