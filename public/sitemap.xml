@@ -5,4 +5,36 @@
         <loc>https://fixmyautomation.roshan-onsurf.workers.dev/</loc>
     </url>
 
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-automation-not-working.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-selector-not-working.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-element-not-found.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-browser-automation-error.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-excel-automation-error.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-package-dependency-error.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fixmyautomation.roshan-onsurf.workers.dev/fix/uipath-orchestrator-job-failed.html</loc>
+    </url>
+
 </urlset>
